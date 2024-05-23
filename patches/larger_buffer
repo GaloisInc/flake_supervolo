@@ -1,0 +1,13 @@
+diff --git a/libraries/AP_HAL_SITL/sitl_gps.cpp b/libraries/AP_HAL_SITL/sitl_gps.cpp
+index 19b3c191b9..2e7e01c311 100644
+--- a/libraries/AP_HAL_SITL/sitl_gps.cpp
++++ b/libraries/AP_HAL_SITL/sitl_gps.cpp
+@@ -595,7 +595,7 @@ void SITL_State::_gps_nmea_printf(uint8_t instance, const char *fmt, ...)
+ {
+     char *s = nullptr;
+     uint16_t csum;
+-    char trailer[6];
++    char trailer[8];
+ 
+     va_list ap;
+ 
