@@ -1,0 +1,12 @@
+--- a/Tools/ardupilotwaf/boards.py	2024-05-21 08:46:58.347399830 -0700
++++ b/Tools/ardupilotwaf/boards.py	2024-05-21 08:47:22.661940774 -0700
+@@ -252,7 +252,8 @@
+             self.embed_ROMFS_files(bld)
+ 
+     def build(self, bld):
+-        bld.ap_version_append_str('GIT_VERSION', bld.git_head_hash(short=True))
++        if hasattr(bld, "git_head_hash"):
++            bld.ap_version_append_str('GIT_VERSION', bld.git_head_hash(short=True))
+         import time
+         ltime = time.localtime()
+         bld.ap_version_append_int('BUILD_DATE_YEAR', ltime.tm_year)
