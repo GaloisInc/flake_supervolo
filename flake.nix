@@ -9,13 +9,16 @@
       url = "github:kquick/nix-levers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # galois-flakes.url = "github:GaloisInc/flakes";
+    galois-flakes = {
+      url = "github:GaloisInc/flakes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ardupilot = {
       url = "github:GaloisInc/flake_ardupilot";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.levers.follows = "levers";
+      inputs.galois-flakes.follows = "galois-flakes";
       inputs.ardupilot-src.follows = "supervolo-src";
-      inputs.ardupilot-patches.follows = "supervolo-patches";
       # gbenchmark
       # ChibiOS
       inputs.googletest-src.follows = "googletest-src";
@@ -27,10 +30,6 @@
     };
     supervolo-src = {
       url = "github:RMIShane/ardupilot/SuperVolo_Master";
-      flake = false;
-    };
-    supervolo-patches = {
-      url = "./patches";
       flake = false;
     };
     googletest-src = {
@@ -57,6 +56,7 @@
       url = "github:GaloisInc/flakes?dir=uavcan";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.levers.follows = "levers";
+      inputs.galois-flakes.follows = "galois-flakes";
       inputs.uavcan-src.follows = "uavcan-src";
       inputs.uavcan_DSDL-src.follows = "uavcan_DSDL-src";
       inputs.pyuavcan-src.follows = "pyuavcan-src";
@@ -76,13 +76,46 @@
   };
 
   outputs = {
-    self, nixpkgs, levers
+    self, nixpkgs, levers, galois-flakes
     , ardupilot
     , supervolo-src
-    , supervolo-patches
     , ...
   }: {
     apps = ardupilot.apps;
-    packages = ardupilot.packages;
+    packages = levers.eachSystem (system:
+      let pkgs = import nixpkgs { inherit system; };
+          use-build-bom = galois-flakes.outputs.packages."${system}".build-bom-wrapper
+        {
+          extra-build-bom-flags = [
+            # "-E"
+            # "-v"
+
+            # AP_Common.c tries to ensure the right size for float
+            # constants via "static_assert(sizeof(1e6) == sizeof(float),
+            # ...)" which is obtained in gcc via
+            # -fsingle-precision-constant, but clang's version is
+            # -cl-single-precision-constant
+            "--inject-argument=-cl-single-precision-constant"
+          ];
+          clang = pkgs.clang_9;
+          llvm = pkgs.llvm_9;
+        };
+      in
+      {
+        default = self.packages.${system}.sitl_bc;
+        sitl = ardupilot.packages.${system}.sitl.overrideAttrs (oldAttrs:
+          {
+            patches =
+                [
+                  "${self}/patches/no_git_assumption"
+                  "${self}/patches/patch_warnings"
+                  # The following increases the size of an internal buffer used
+                  # for snprintf; gcc believes it isn't big enough (it is!) and
+                  # fails compilation.
+                  "${self}/patches/larger_buffer"
+                ];
+          });
+        sitl_bc = use-build-bom self.packages.${system}.sitl;
+      });
   };
 }
