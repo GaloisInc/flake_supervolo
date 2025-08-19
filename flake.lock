@@ -178,7 +178,7 @@
           "CANBUS"
         ],
         "ardupilot-src": [
-          "supervolo-src"
+          "ardupilot_supervolo_base-src"
         ],
         "dronecan_DSDL-src": "dronecan_DSDL-src",
         "dronecan_dsdlc-src": "dronecan_dsdlc-src",
@@ -222,6 +222,76 @@
       "original": {
         "owner": "GaloisInc",
         "repo": "flake_ardupilot",
+        "type": "github"
+      }
+    },
+    "ardupilot_supervolo": {
+      "inputs": {
+        "CANBUS": [
+          "CANBUS"
+        ],
+        "ardupilot-src": [
+          "supervolo-src"
+        ],
+        "dronecan_DSDL-src": "dronecan_DSDL-src_2",
+        "dronecan_dsdlc-src": "dronecan_dsdlc-src_2",
+        "empy-src": "empy-src_2",
+        "galois-flakes": [
+          "galois-flakes"
+        ],
+        "googletest-src": [
+          "googletest-src"
+        ],
+        "levers": [
+          "levers"
+        ],
+        "libcanard-src": [
+          "libcanard-src"
+        ],
+        "lwip-src": "lwip-src_2",
+        "mavlink-src": [
+          "mavlink-src"
+        ],
+        "mavproxy-src": "mavproxy-src_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pydronecan-src": "pydronecan-src_2",
+        "pymavlink-src": [
+          "pymavlink-src"
+        ],
+        "waf-src": [
+          "waf-src"
+        ]
+      },
+      "locked": {
+        "lastModified": 1716507137,
+        "narHash": "sha256-ADZCRMXKJ6T+j+cBgit3A3SmIPD+Yyx9FX6FtPTOeGA=",
+        "owner": "GaloisInc",
+        "repo": "flake_ardupilot",
+        "rev": "69b032c872f76499a36186ed9358b2c83cbebcb7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GaloisInc",
+        "repo": "flake_ardupilot",
+        "type": "github"
+      }
+    },
+    "ardupilot_supervolo_base-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1582025158,
+        "narHash": "sha256-3oK9MhNVLJEDmA8jsvef1e1grgKEYr8BEKwC1385VZc=",
+        "owner": "ardupilot",
+        "repo": "ardupilot",
+        "rev": "d24d1c587a5066c59a20ea532c527fe13d085a57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ardupilot",
+        "ref": "d24d1c5",
+        "repo": "ardupilot",
         "type": "github"
       }
     },
@@ -888,7 +958,41 @@
         "type": "github"
       }
     },
+    "dronecan_DSDL-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688851155,
+        "narHash": "sha256-I0080lPuI6agkxtpjj8jVBsIKVqpObRRaYUN9rpF15k=",
+        "owner": "DroneCAN",
+        "repo": "DSDL",
+        "rev": "de93d9c8bb76de1b093050e3a31e4d4ce539c577",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DroneCAN",
+        "ref": "de93d9c",
+        "repo": "DSDL",
+        "type": "github"
+      }
+    },
     "dronecan_dsdlc-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707620433,
+        "narHash": "sha256-bO82zQwd91LK6gPdcGLd2WkXA01zsp03KUnhDSK9Ohg=",
+        "owner": "DroneCAN",
+        "repo": "dronecan_dsdlc",
+        "rev": "2465ace6c8cb0148e3ff5865aa9e4dd17d691a71",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DroneCAN",
+        "ref": "2465ace",
+        "repo": "dronecan_dsdlc",
+        "type": "github"
+      }
+    },
+    "dronecan_dsdlc-src_2": {
       "flake": false,
       "locked": {
         "lastModified": 1707620433,
@@ -918,6 +1022,19 @@
       }
     },
     "empy-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710457005,
+        "narHash": "sha256-iUrGeRlYvR2825wfTm0V/Xl52cvAG173qSF7PulzIM4=",
+        "type": "tarball",
+        "url": "http://www.alcyone.com/software/empy/empy-3.3.4.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "http://www.alcyone.com/software/empy/empy-3.3.4.tar.gz"
+      }
+    },
+    "empy-src_2": {
       "flake": false,
       "locked": {
         "lastModified": 1710457005,
@@ -1294,6 +1411,23 @@
         "type": "github"
       }
     },
+    "lwip-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704918921,
+        "narHash": "sha256-CYL+xW6jkAjA1yQl5xqcN84PHCes5i3psEquiWRjbNc=",
+        "owner": "ArduPilot",
+        "repo": "lwip",
+        "rev": "143a6a5cb8023921b5dced55c30551ffb752b640",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ArduPilot",
+        "ref": "143a6a5",
+        "repo": "lwip",
+        "type": "github"
+      }
+    },
     "mavlink-src": {
       "flake": false,
       "locked": {
@@ -1312,6 +1446,22 @@
       }
     },
     "mavproxy-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709109519,
+        "narHash": "sha256-+zatXK9sTBXwRf/GeDUqOVWcSsivl+bZMsrO5HkDgJ8=",
+        "owner": "ardupilot",
+        "repo": "mavproxy",
+        "rev": "3192caedfdae3986af491b2e102ed8e6224dd73a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ardupilot",
+        "repo": "mavproxy",
+        "type": "github"
+      }
+    },
+    "mavproxy-src_2": {
       "flake": false,
       "locked": {
         "lastModified": 1709109519,
@@ -1524,6 +1674,23 @@
         "type": "github"
       }
     },
+    "pydronecan-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704596861,
+        "narHash": "sha256-ESZPqg79Tdl9MQMWnbWhXIYa8OxaRRF7LPUIkVDHJHQ=",
+        "owner": "DroneCAN",
+        "repo": "pydronecan",
+        "rev": "1f494e9a56ac9930f1e11c2f453789414b10d54e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DroneCAN",
+        "ref": "1f494e9",
+        "repo": "pydronecan",
+        "type": "github"
+      }
+    },
     "pymavlink-src": {
       "flake": false,
       "locked": {
@@ -1706,6 +1873,8 @@
       "inputs": {
         "CANBUS": "CANBUS",
         "ardupilot": "ardupilot",
+        "ardupilot_supervolo": "ardupilot_supervolo",
+        "ardupilot_supervolo_base-src": "ardupilot_supervolo_base-src",
         "galois-flakes": "galois-flakes",
         "googletest-src": "googletest-src",
         "levers": "levers_2",
